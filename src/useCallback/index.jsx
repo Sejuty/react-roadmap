@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import List from "./List";
-import {v4 as uuidv4} from "uuid"
+import { v4 as uuidv4 } from "uuid";
 
 const UseCallback = () => {
   // useMemo Cache the value to getItems instead of the whole function.
@@ -54,12 +54,13 @@ const UseCallback = () => {
 
   const handleAddUser = () => {
     setUsers(users.concat({ id: uuidv4(), name: text }));
+    setText("");
   };
 
-  const handleRemove = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
-
+  const handleRemove = useCallback(
+    (id) => setUsers(users.filter((user) => user.id !== id)),
+    [users]
+  );
   return (
     <div>
       <input type="text" value={text} onChange={handleText} />

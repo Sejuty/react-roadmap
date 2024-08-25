@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 // import { useEffect } from "react";
 // import { useState } from "react";
+import { useMemo } from "react";
 
 // const List = ({ getItems }) => {
 //   const [items, setItems] = useState([]);
@@ -14,28 +14,37 @@
 // };
 
 // export default List;
+
+// if we don't pass onRemove in dependencies, the useCallback for onRemove is not necessary
 const List = ({ list, onRemove }) => {
-  console.log("Render: List");
-  return (
-    <ul>
-      {list.map((item) => (
-        <ListItem key={item.id} item={item} onRemove={onRemove} />
-      ))}
-    </ul>
-  );
+  const memoizedList = useMemo(() => {
+    console.log("Render: List");
+    return (
+      <ul>
+        {list.map((item) => (
+          <ListItem key={item.id} item={item} onRemove={onRemove} />
+        ))}
+      </ul>
+    );
+  }, [list, onRemove]);
+
+  return memoizedList;
 };
 
 export default List;
 
-// eslint-disable-next-line react/prop-types
 export const ListItem = ({ item, onRemove }) => {
-  console.log("Render: ListItem");
-  return (
-    <li>
-      {item.name}
-      <button type="button" onClick={() => onRemove(item.id)}>
-        Remove
-      </button>
-    </li>
-  );
+  const listItem = useMemo(() => {
+    console.log("Render: ListItem");
+    return (
+      <li>
+        {item.name}
+        <button type="button" onClick={() => onRemove(item.id)}>
+          Remove
+        </button>
+      </li>
+    );
+  }, [item, onRemove]);
+
+  return listItem;
 };

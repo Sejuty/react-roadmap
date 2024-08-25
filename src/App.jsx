@@ -1,9 +1,9 @@
 import "./App.css";
-// import UseCallback from "./useCallback";
-import UseMemo from "./useMemo";
+import UseCallback from "./useCallback";
+// import UseMemo from "./useMemo";
 
 function App() {
-  return <UseMemo />;
+  return <UseCallback />;
 }
 
 export default App;
