@@ -17,8 +17,8 @@ export const Layout = () => {
         <NavLink to="/home" style={style}>
           Home
         </NavLink>
-        <NavLink to="/user" style={style}>
-          User
+        <NavLink to="/users" style={style}>
+          Users
         </NavLink>
       </nav>
 

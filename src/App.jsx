@@ -18,14 +18,16 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
-          {/* <Route path="users" element={<Users users={users}/>} > */}
-          <Route path="user" element={<User />}>
+          {/* asterisk (*) means this route and its component render descendant routes */}
+          <Route path="users/*" element={<Users users={users} />} />
+          {/* <Route path="user" element={<User />}>
             <Route index element={<Profile />} />
             <Route path="profile" element={<Profile />} />
             <Route path="account" element={<Account />} />
             <Route path="*" element={<NoMatch />} />
-          </Route>
-          {/* </Route> */}
+          </Route> */}
+
+          {/* <Route path="users/:userId" element={<User />} /> */}
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
