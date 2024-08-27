@@ -5,7 +5,6 @@ const users = [
   { id: "2", fullName: "Sarah Finnley" },
 ];
 
-
 export const Home = () => {
   return (
     <>
@@ -31,19 +30,36 @@ export const Users = ({ users }) => {
 };
 
 export const User = () => {
-  const { userId } = useParams();
-  const user = users.find(user => user.id === userId); 
+  // const { userId } = useParams();
+  // const user = users.find((user) => user.id === userId);
 
-  if (!user) {
-    return <p>User not found</p>;
-  }
+  // if (!user) {
+  //   return <p>User not found</p>;
+  // }
 
   return (
     <>
-      <h2>{user.fullName}</h2>
-      <p>User ID: {user.id}</p>
-      {/* Add more user details as needed */}
-      <Link to="/users">Back to users</Link>
+      <nav>
+        <Link to="profile">Profile</Link>
+        <Link to="account">Account</Link>
+      </nav>
+      <Outlet/>
+      <Link to="/user">Back to users</Link>
+    </>
+  );
+};
+
+export const Profile = () => {
+  return (
+    <>
+      <h2>Profile</h2>
+    </>
+  );
+};
+export const Account = () => {
+  return (
+    <>
+      <h2>Account</h2>
     </>
   );
 };
